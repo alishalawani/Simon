@@ -10,11 +10,11 @@ My app is called Simon. It's a web app version of the Digital Simon game. The pr
 
 **Initial Landing View**
 
-![image](https://imgur.com/VIYtQ5c)
+![image](https://i.imgur.com/VIYtQ5c.png)
 
 **Results View**
 
-![image](https://imgur.com/pnJZjc0)
+![image](https://i.imgur.com/pnJZjc0.png)
 
 ## User Stories
 
