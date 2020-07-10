@@ -1,0 +1,37 @@
+.circle-body {
+	display: grid;
+	/* height: 200px;
+    width: 200px; */
+	grid-template-columns: auto auto auto auto;
+	grid-gap: 10px;
+	padding: 10px;
+}
+
+.main-circle-js {
+	/* position: absolute; */
+	height: 100px;
+	width: 100px;
+	border: 5px solid rgba(0, 0, 0, 1);
+
+	/* transform: rotate(45deg); */
+	/* border-right: 60px solid black; */
+}
+
+.blue {
+	border-radius: 180px 0 0 0;
+	background-color: blue;
+}
+.red {
+	border-radius: 0 180px 0 0;
+	background-color: red;
+}
+
+.yellow {
+	border-radius: 0 0 0 180px;
+	background-color: yellow;
+}
+
+.green {
+	border-radius: 0 0 180px 0;
+	background-color: greenyellow;
+}
