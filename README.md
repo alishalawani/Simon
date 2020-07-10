@@ -4,7 +4,7 @@
 
 ## Project Description
 
-My app is called Simon. It's a web app version of the Digital Simon game. The program chooses a sequence of colors and makes the player repeat the same sequence to advance to the next round, with the sequence getting more difficult to follow in every round.The player's score from every round adds up as the game progresses -- whichever player won, or in the case of a draw, a tie between the users. Users will have the option to play again. In the future, I'd like to add a feature where one player can play against the computer.
+My app is called Simon. It's a web app version of the Digital Simon game. The program chooses a sequence of colors and makes the player repeat the same sequence to advance to the next round, with the sequence getting more difficult to follow in every round.The player's score from every round adds up as the game progresses. Users will have the option to play again. In the future, I'd like to add a feature where one player can play against another player.
 
 ## Wire Frames
 
