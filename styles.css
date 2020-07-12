@@ -1,48 +1,68 @@
 body {
 }
-.circle-container {
-	display: inline-block;
-	text-align: center;
-}
 .logo {
 	justify-content: center;
 	display: flex;
 	height: 5px;
+	margin: auto auto;
+}
+.start-button {
+	display: inline-block;
+	background-color: rgb(253, 122, 0);
+	font-size: 25px;
+	padding: 0px 15px;
+	border-radius: 15px;
+	margin: 60px 0 -100px 70%;
+}
+.circle-container {
+	display: inline-block;
+	text-align: center;
+	/* justify-content: center; */
+	/* align-items: center; */
+	margin: -75px 10%;
+	align-self: center;
 }
 
 .circle {
 	display: grid;
-	grid-template-columns: 200px 200px;
-	grid-template-rows: 200px 200px;
-	/* padding-top: 30%; */
-	margin: auto auto;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 0 -25px;
 }
 
 .main-circle-js {
 	/* pies */
 	position: relative;
-	height: 100%;
-	width: 100%;
+	height: 75%;
+	width: 75%;
 	border: 5px solid rgba(0, 0, 0, 1);
 	z-index: -1;
+	margin: -1px;
 }
 
 /* THE PIES 'SIMON' */
 .blue {
+	width: 150px;
+	height: 150px;
 	border-radius: 180px 0 0 0;
 	background-color: blue;
 }
 .red {
+	width: 150px;
+	height: 150px;
 	border-radius: 0 180px 0 0;
 	background-color: red;
 }
 
 .yellow {
+	width: 150px;
+	height: 150px;
 	border-radius: 0 0 0 180px;
 	background-color: yellow;
 }
 
 .green {
+	width: 150px;
+	height: 150px;
 	border-radius: 0 0 180px 0;
 	background-color: greenyellow;
 }
@@ -50,7 +70,9 @@ body {
 .inner-simon {
 	font-size: 20px;
 	position: relative;
-	bottom: -260px;
+	bottom: -13.5rem;
+	margin: 0 10% 0 10%;
+
 	padding: 50px 30px;
 	border-radius: 60px;
 	background-color: black;
