@@ -1,14 +1,14 @@
 body {
 	/* width: 100vw; */
-    text-align: center;
-    background: #1b1b1b;
+	text-align: center;
+	background: #1b1b1b;
 }
 #logo {
 	justify-content: center;
 	display: flex;
 	height: 5px;
-    margin: auto auto;
-    color: honeydew;
+	margin: auto auto;
+	color: honeydew;
 }
 .score-js {
 	display: inline-block;
@@ -16,8 +16,8 @@ body {
 	font-size: 25px;
 	padding: 0px 15px;
 	border-radius: 15px;
-    margin: 20px 0 -1px 60%;
-    color: honeydew;
+	margin: 20px 0 -1px 60%;
+	color: honeydew;
 }
 .round-js {
 	display: flex;
@@ -32,14 +32,16 @@ body {
 	border: none;
 }
 .start-button {
-	display: inline-block;
-	background-color: rgb(253, 122, 0);
+	/* display: inline-block; */
+	background: rgb(253, 122, 0);
 	font-size: 25px;
 	padding: 0px 15px;
 	border-radius: 15px;
 	margin: -5px 0 0 70%;
 	border: none;
+	z-index: 999;
 }
+
 .foot {
 	/* justify-content: center; */
 	display: flex;
@@ -52,8 +54,9 @@ body {
 	padding: 0 20px;
 	font-weight: bold;
 	font-size: 25px;
-    flex: 2;
-    color: honeydew;
+	flex: 2;
+	color: honeydew;
+	opacity: 0;
 }
 .next-round {
 	/* display: flex; */
@@ -65,14 +68,12 @@ body {
 	height: 30px;
 	border-radius: 20px;
 	border: none;
+	opacity: 0;
 }
 .circle-container {
 	display: inline-block;
 	text-align: center;
-	/* justify-content: center; */
-	/* align-items: center; */
-	margin: -75px 10%;
-	/* align-self: center; */
+	margin: -48px 10%;
 }
 
 .circle {
@@ -101,13 +102,22 @@ body {
 	border-radius: 180px 0 0 0;
 	background-color: blue;
 }
+.onBlue {
+	box-shadow: 10px 5px 40px rgb(43, 97, 245);
+}
 .red {
 	width: 150px;
 	height: 150px;
 	border-radius: 0 180px 0 0;
-    background-color: rgb(245, 43, 43);
-    box-shadow: 10px 5px 40px rgb(245, 43, 43);
-    
+
+	background-color: rgb(245, 43, 43);
+
+	/* radial gradient (white in the middle ) */
+	/* set border to transparent on click*/
+	/* have two classes  */
+}
+.onRed {
+	box-shadow: 10px 5px 40px rgb(245, 43, 43);
 }
 
 .yellow {
@@ -116,12 +126,17 @@ body {
 	border-radius: 0 0 0 180px;
 	background-color: yellow;
 }
-
+.onYellow {
+	box-shadow: 10px 5px 40px rgb(245, 242, 43);
+}
 .green {
 	width: 150px;
 	height: 150px;
 	border-radius: 0 0 180px 0;
 	background-color: greenyellow;
+}
+.onGreen {
+	box-shadow: 10px 5px 40px rgb(84, 245, 43);
 }
 
 .inner-simon {
