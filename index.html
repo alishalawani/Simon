@@ -7,9 +7,10 @@
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-        <h1 id="logo">SIMON</h1>
-        <span class="start-button">start</span>
-        <span class="score-js">Score: 0</span>
+		<h1 id="logo">SIMON</h1>
+		<h2 class="round-js"></h2>
+		<button class="start-button">start</button>
+		<span class="score-js">Score: 0</span>
 		<div class="circle-container">
 			<div class="inner-simon">SIMON</div>
 			<div class="circle">
@@ -17,10 +18,12 @@
 				<div class="red main-circle-js" data-integer="2"></div>
 				<div class="yellow main-circle-js" data-integer="3"></div>
 				<div class="green main-circle-js" data-integer="4"></div>
-            </div>
-            
-        </div>
-        <p id="message">YOU WIN!!!</p>
+			</div>
+		</div>
+		<div class="foot">
+			<p id="message">YOU WIN!!!</p>
+			<button class="next-round">Next Round >></button>
+		</div>
 		<script src="scripts.js"></script>
 	</body>
 </html>

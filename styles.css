@@ -16,18 +16,51 @@ body {
 	border-radius: 15px;
 	margin: 20px 0 -1px 60%;
 }
+.round-js {
+	display: flex;
+	background-color: rgb(253, 122, 0);
+	font-size: 25px;
+	padding: 0px -15px 0 0;
+	width: 40%;
+	justify-content: flex-end;
+	/* justify-content: center; */
+	/* border-radius: 15px; */
+	margin: 60px 0 -20px 0;
+	border: none;
+}
 .start-button {
 	display: inline-block;
 	background-color: rgb(253, 122, 0);
 	font-size: 25px;
 	padding: 0px 15px;
 	border-radius: 15px;
-	margin: 60px 0 0 70%;
+	margin: -5px 0 0 70%;
+	border: none;
+}
+.foot {
+	/* justify-content: center; */
+	display: flex;
+	flex-direction: row;
 }
 #message {
-	justify-content: center;
 	display: flex;
-	margin: 35% 10% 20px 10%;
+	justify-content: flex-end;
+	margin: 115px 0 0 0;
+	padding: 0 20px;
+	font-weight: bold;
+	font-size: 25px;
+	flex: 2;
+}
+.next-round {
+	/* display: flex; */
+	justify-content: center;
+	flex: 1;
+	margin: 115px 0 0 0;
+	background-color: black;
+	color: white;
+	height: 30px;
+	border-radius: 20px;
+	border: none;
 }
 .circle-container {
 	display: inline-block;
@@ -90,7 +123,7 @@ body {
 	position: relative;
 	bottom: -13.5rem;
 	margin: 0 10% 0 10%;
-
+	font-weight: bold;
 	padding: 50px 30px;
 	border-radius: 60px;
 	background-color: black;
