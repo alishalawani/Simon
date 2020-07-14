@@ -1,7 +1,7 @@
 body {
-	/* width: 100vw; */
 	text-align: center;
 	background: #1b1b1b;
+	/* padding: 0 20%; */
 }
 #logo {
 	justify-content: center;
@@ -12,7 +12,6 @@ body {
 }
 .score-js {
 	display: inline-block;
-	/* background-color: rgb(253, 122, 0); */
 	font-size: 25px;
 	padding: 0px 15px;
 	border-radius: 15px;
@@ -26,10 +25,9 @@ body {
 	padding: 0px -15px 0 0;
 	width: 40%;
 	justify-content: flex-end;
-	/* justify-content: center; */
-	/* border-radius: 15px; */
 	margin: 60px 0 -20px 0;
 	border: none;
+
 }
 .start-button {
 	/* display: inline-block; */
@@ -93,6 +91,9 @@ body {
 }
 
 @media (min-width: 800px) {
+	body{
+		padding: 0 20%;
+	}
 }
 
 /* THE PIES 'SIMON' */
