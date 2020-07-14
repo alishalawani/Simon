@@ -1,34 +1,83 @@
 // Grabbing the buttons
-const cirlce = document.querySelector('.circle');
+const circle = document.querySelector('.circle');
 const blueButton = document.querySelector('.blue');
 const redButton = document.querySelector('.red');
 const yellowButton = document.querySelector('.yellow');
 const greenButton = document.querySelector('.green');
+let message = document.querySelector('#message');
+let score = document.querySelector('.score-js');
+let scoreCount = 0;
+score.innerText = `Score: ${scoreCount}`
+let nextRoundButton = document.querySelector('.next-round');
+nextRoundButton.addEventListener('click', nextRound);
 
-let roundCount = 4;
-document.querySelector('.round-js').innerText = `Round ${roundCount}`;
+let roundCount = 1;
+let roundLabel = document.querySelector('.round-js');
+roundLabel.innerText = `Round ${roundCount}`;
 
 let startButton = document.querySelector('.start-button');
 
 startButton.addEventListener('click', handleStartButton);
 
-var rando = 1;
+var rando;
 let timeout = 2000;
 let timeoutTracker = timeout;
 let userSequence = [];
 let gameSequence = [];
 
+function handleStartButton(event) {
+	message.style.opacity = '1';
+	message.innerText = 'WATCH!';
+
+	console.log('handleStartButton');
+
+	gameChoice();
+}
+
+circle.addEventListener('click', handleUserChoice);
+
+function handleUserChoice(event) {
+	//the message should say your turn
+	console.log('handle user choice');
+	glowAndDim(event);
+	userSequence.push(`${event.target.dataset.color}`);
+	console.log(event.target);
+	let rightChoice = false;
+	if (gameSequence.length == userSequence.length) {
+		for (let i = 0; i < gameSequence.length; i++) {
+			if (gameSequence[i] == userSequence[i]) {
+				rightChoice = true;
+			} else {
+				rightChoice = false;
+				// delete this later
+				console.log(rightChoice);
+			}
+		}
+		if (rightChoice == false) {
+			// player loses so a losing message pops up
+			message.innerText = 'YOU LOSE'
+		} else if (rightChoice == true) {
+			// player wins so a winning message pops up
+			scoreCount+=2;
+			score.innerText = `Score: ${scoreCount}`
+			message.innerText = 'YOU WIN!!!';
+			
+			//make the next round button visible
+			nextRoundButton.style.opacity = '1';
+		}
+	}
+}
+
 function gameChoice() {
 	for (let i = 0; i < roundCount; i++) {
 		rando = Math.floor(Math.random() * 4) + 1;
-		
+
 		if (rando == 1) {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				blueButton.classList.add('onBlue');
 			}, timeout);
-			checkAndRemoveColors();
-				blueButton.classList.add('onBlue');
+			// checkAndRemoveColors();
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${blueButton.dataset.color}`);
 			console.log('blue');
@@ -57,18 +106,14 @@ function gameChoice() {
 			gameSequence.push(`${greenButton.dataset.color}`);
 			console.log('green');
 		}
-		
+		let clearTime = 200 + timeout;
+		setTimeout(checkAndRemoveColors, clearTime);
 		timeout += 1000;
-		setTimeout(checkAndRemoveColors, timeout);
+		// setTimeout(checkAndRemoveColors, timeout);
 	}
 	timeout = timeoutTracker;
 }
-setTimeout(checkAndRemoveColors, timeout);
-function handleStartButton(event) {
-	console.log('handleStartButton');
 
-	gameChoice();
-}
 //makes sure only one button lights up at a time
 function checkAndRemoveColors() {
 	if (blueButton.classList.contains('onBlue')) {
@@ -82,9 +127,27 @@ function checkAndRemoveColors() {
 	}
 }
 
-function delay (ms){
-	const startPoint = new Date().getTime();
-	while (new Date().getTime() - startPoint <= ms) {
-		/* wait */
+function glowAndDim(event) {
+	let color = event.target.dataset.color;
+	if (color == 'blue') {
+		blueButton.classList.add('onBlue');
+		setTimeout(checkAndRemoveColors, 200);
+	} else if (color == 'red') {
+		redButton.classList.add('onRed');
+		setTimeout(checkAndRemoveColors, 200);
+	} else if (color == 'yellow') {
+		yellowButton.classList.add('onYellow');
+		setTimeout(checkAndRemoveColors, 200);
+	} else if (color == 'green') {
+		greenButton.classList.add('onGreen');
+		setTimeout(checkAndRemoveColors, 200);
 	}
-};
+}
+
+function nextRound(event){
+	event.target.style.opacity = '0';
+	roundCount++;
+	roundLabel.innerText = `Round ${roundCount}`;
+	message.style.opacity = '0';
+
+}

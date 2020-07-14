@@ -2,6 +2,8 @@ body {
 	text-align: center;
 	background: #1b1b1b;
 	/* padding: 0 20%; */
+	position: relative;
+	z-index: -1;
 }
 #logo {
 	justify-content: center;
@@ -22,12 +24,11 @@ body {
 	display: flex;
 	background-color: rgb(253, 122, 0);
 	font-size: 25px;
-	padding: 0px -15px 0 0;
+	padding: 0px -10px 0 0;
 	width: 40%;
 	justify-content: flex-end;
 	margin: 60px 0 -20px 0;
 	border: none;
-
 }
 .start-button {
 	/* display: inline-block; */
@@ -70,14 +71,18 @@ body {
 }
 .circle-container {
 	display: inline-block;
+	position: relative;
 	text-align: center;
 	margin: -48px 10%;
+	z-index: 1;
 }
 
 .circle {
+	position: relative;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	margin: 0 -25px;
+	z-index: -1;
 }
 
 .main-circle-js {
@@ -86,18 +91,19 @@ body {
 	height: 75%;
 	width: 75%;
 	border: 5px solid rgba(0, 0, 0, 1);
-	z-index: -1;
+	z-index: 999;
 	margin: -1px;
 }
 
 @media (min-width: 800px) {
-	body{
+	body {
 		padding: 0 20%;
 	}
 }
 
 /* THE PIES 'SIMON' */
 .blue {
+	/* z-index: 999; */
 	width: 150px;
 	height: 150px;
 	border-radius: 180px 0 0 0;
