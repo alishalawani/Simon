@@ -7,7 +7,7 @@ const greenButton = document.querySelector('.green');
 let message = document.querySelector('#message');
 let score = document.querySelector('.score-js');
 let scoreCount = 0;
-score.innerText = `Score: ${scoreCount}`
+score.innerText = `Score: ${scoreCount}`;
 let nextRoundButton = document.querySelector('.next-round');
 nextRoundButton.addEventListener('click', nextRound);
 
@@ -18,7 +18,7 @@ roundLabel.innerText = `Round ${roundCount}`;
 let startButton = document.querySelector('.start-button');
 
 startButton.addEventListener('click', handleStartButton);
-
+circle.addEventListener('click', handleUserChoice);
 var rando;
 let timeout = 2000;
 let timeoutTracker = timeout;
@@ -34,10 +34,9 @@ function handleStartButton(event) {
 	gameChoice();
 }
 
-circle.addEventListener('click', handleUserChoice);
-
 function handleUserChoice(event) {
 	//the message should say your turn
+
 	console.log('handle user choice');
 	glowAndDim(event);
 	userSequence.push(`${event.target.dataset.color}`);
@@ -55,15 +54,17 @@ function handleUserChoice(event) {
 		}
 		if (rightChoice == false) {
 			// player loses so a losing message pops up
-			message.innerText = 'YOU LOSE'
+			message.innerHTML = 'YOU LOSE';
+			clearData();
 		} else if (rightChoice == true) {
 			// player wins so a winning message pops up
-			scoreCount+=2;
-			score.innerText = `Score: ${scoreCount}`
-			message.innerText = 'YOU WIN!!!';
-			
+			scoreCount += 2;
+			score.innerText = `Score: ${scoreCount}`;
+			message.innerHTML = 'YOU WIN!!!';
+
 			//make the next round button visible
 			nextRoundButton.style.opacity = '1';
+			clearData();
 		}
 	}
 }
@@ -76,6 +77,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				blueButton.classList.add('onBlue');
+				playerTurnMessage();
 			}, timeout);
 			// checkAndRemoveColors();
 			//ADD THE CHOICE TO THE SEQUENCE
@@ -85,6 +87,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				redButton.classList.add('onRed');
+				playerTurnMessage();
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${redButton.dataset.color}`);
@@ -93,6 +96,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				yellowButton.classList.add('onYellow');
+				playerTurnMessage();
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${yellowButton.dataset.color}`);
@@ -101,6 +105,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				greenButton.classList.add('onGreen');
+				playerTurnMessage();
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${greenButton.dataset.color}`);
@@ -144,10 +149,27 @@ function glowAndDim(event) {
 	}
 }
 
-function nextRound(event){
+function nextRound(event) {
 	event.target.style.opacity = '0';
 	roundCount++;
 	roundLabel.innerText = `Round ${roundCount}`;
 	message.style.opacity = '0';
+}
 
+function clearData() {
+	//empties the arrays for the user and game sequence
+	gameSequence.forEach(() => {
+		gameSequence.pop();
+	});
+	userSequence.forEach((choice) => {
+		userSequence.pop();
+	});
+	timeout = 2000;
+	timeoutTracker = timeout;
+}
+
+function playerTurnMessage() {
+	if (gameSequence.length == roundCount) {
+		message.innerHTML = 'Your Turn!';
+	}
 }

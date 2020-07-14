@@ -111,6 +111,7 @@ body {
 }
 .onBlue {
 	box-shadow: 10px 5px 40px rgb(43, 97, 245);
+	border: 5px solid rgb(42, 71, 236, 0.7);
 }
 .red {
 	width: 150px;
@@ -125,6 +126,7 @@ body {
 }
 .onRed {
 	box-shadow: 10px 5px 40px rgb(245, 43, 43);
+	border: 5px solid rgba(241, 83, 62, 0.7);
 }
 
 .yellow {
@@ -135,6 +137,7 @@ body {
 }
 .onYellow {
 	box-shadow: 10px 5px 40px rgb(245, 242, 43);
+	border: 5px solid rgba(243, 225, 60, 0.7);
 }
 .green {
 	width: 150px;
@@ -144,6 +147,7 @@ body {
 }
 .onGreen {
 	box-shadow: 10px 5px 40px rgb(84, 245, 43);
+	border: 5px solid rgba(84, 245, 43, 0.7);
 }
 
 .inner-simon {
