@@ -45,6 +45,7 @@ body {
 	/* justify-content: center; */
 	display: flex;
 	flex-direction: row;
+	margin: -20px 0 100px 0;
 }
 #message {
 	display: flex;
