@@ -26,9 +26,9 @@ let userSequence = [];
 let gameSequence = [];
 
 function handleStartButton(event) {
-	//  
-	fixUnpromptedClicks();
-	rightChoice = false;
+	//
+	// fixUnpromptedClicks();
+	// rightChoice = false;
 	checkAndRemoveColors();
 	message.style.opacity = '1';
 	message.innerText = 'WATCH!';
@@ -47,23 +47,24 @@ function handleUserChoice(event) {
 	console.log(event.target);
 
 	if (
-		gameSequence.length == userSequence.length &&
-		gameSequence !== 0 &&
-		userSequence !== 0
+		gameSequence.length === userSequence.length &&
+		gameSequence.length !== 0 &&
+		userSequence.length !== 0
 	) {
 		for (let i = 0; i < gameSequence.length; i++) {
 			if (gameSequence[i] !== userSequence[i]) {
 				// do nothing
-			} else {
+				rightChoice = false;
+			} else if (gameSequence[i] === userSequence[i]) {
 				rightChoice = true;
 				// delete this later
-				console.log(rightChoice);
+				// console.log(rightChoice);
 			}
 		}
 		if (rightChoice === false) {
 			// player loses so a losing message pops up
 			message.innerHTML = 'YOU LOSE';
-			clearData();
+			// clearData();
 			startButton.innerText = 'replay';
 		} else if (rightChoice === true) {
 			startButton.style.opacity = '0';
@@ -74,13 +75,13 @@ function handleUserChoice(event) {
 
 			//make the next round button visible
 			nextRoundButton.style.opacity = '1';
-			clearData();
+			// clearData();
 		}
 	} else {
 		rightChoice = false;
 	}
 
-	fixUnpromptedClicks();
+	// fixUnpromptedClicks();
 }
 
 function gameChoice() {
@@ -191,34 +192,34 @@ function clearData() {
 }
 
 function playerTurnMessage(time) {
-	if (gameSequence.length === roundCount) {
+	if (gameSequence.length === roundCount  ) {
 		setTimeout(() => {
 			message.innerHTML = 'Your Turn!';
-		}, time - 500);
+		}, time - 600);
 	}
 }
 
 /** STORE THE SCORE, ROUND, AND DATA */
-function storeDataOnReload() {
-	if (typeof Storage !== 'undefined') {
-		// Store the data
-		localStorage.storedRound = roundCount;
-		localStorage.storedScore = scoreCount;
-		localStorage.storedUserSequence = userSequence;
-		localStorage.storedGameSequence = gameSequence;
-		localStorage.storedStartOrReplay = startButton.innerText;
-		// Retrieve the data
-		roundCount = Number(localStorage.storedRound);
-		scoreCount = Number(localStorage.storedScore);
-		userSequence = Array(localStorage.userSequence);
-		gameSequence = Array(localStorage.gameSequence);
-		storedStartOrReplay = localStorage.storedStartOrReplay;
-	} else {
-		alert('Sorry, Your game will have to reset...');
-	}
-}
+// function storeDataOnReload() {
+// 	if (typeof Storage !== 'undefined') {
+// 		// Store the data
+// 		localStorage.storedRound = roundCount;
+// 		localStorage.storedScore = scoreCount;
+// 		localStorage.storedUserSequence = userSequence;
+// 		localStorage.storedGameSequence = gameSequence;
+// 		localStorage.storedStartOrReplay = startButton.innerText;
+// 		// Retrieve the data
+// 		roundCount = Number(localStorage.storedRound);
+// 		scoreCount = Number(localStorage.storedScore);
+// 		userSequence = Array(localStorage.userSequence);
+// 		gameSequence = Array(localStorage.gameSequence);
+// 		storedStartOrReplay = localStorage.storedStartOrReplay;
+// 	} else {
+// 		alert('Sorry, Your game will have to reset...');
+// 	}
+// }
 
-storeDataOnReload();
+// storeDataOnReload();
 
 /** the sounds */
 
@@ -232,8 +233,8 @@ yellowSound.src = 'yellowSound.wav';
 let greenSound = new Audio();
 greenSound.src = 'greenSound.wav';
 
-function fixUnpromptedClicks(){
-	if(gameSequence.length !== roundCount){
+function fixUnpromptedClicks() {
+	if (gameSequence.length !== roundCount) {
 		userSequence = [];
 	}
 }
