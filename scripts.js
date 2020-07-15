@@ -192,10 +192,10 @@ function clearData() {
 }
 
 function playerTurnMessage(time) {
-	if (gameSequence.length === roundCount  ) {
+	if (gameSequence.length === roundCount) {
 		setTimeout(() => {
 			message.innerHTML = 'Your Turn!';
-		}, time - 600);
+		}, time - 100);
 	}
 }
 
