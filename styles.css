@@ -1,9 +1,8 @@
 body {
 	text-align: center;
 	background: #1b1b1b;
-	/* padding: 0 20%; */
+	margin: auto;
 	position: relative;
-	z-index: -1;
 }
 #logo {
 	justify-content: center;

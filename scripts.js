@@ -27,7 +27,7 @@ let gameSequence = [];
 
 function handleStartButton(event) {
 	rightChoice = false;
-	checkAndRemoveColors()
+	checkAndRemoveColors();
 	message.style.opacity = '1';
 	message.innerText = 'WATCH!';
 
@@ -43,8 +43,12 @@ function handleUserChoice(event) {
 	glowAndSound(event);
 	userSequence.push(`${event.target.dataset.color}`);
 	console.log(event.target);
-	
-	if ((gameSequence.length == userSequence.length) && (gameSequence !== 0) && (userSequence !== 0) ) {
+
+	if (
+		gameSequence.length == userSequence.length &&
+		gameSequence !== 0 &&
+		userSequence !== 0
+	) {
 		for (let i = 0; i < gameSequence.length; i++) {
 			if (gameSequence[i] !== userSequence[i]) {
 				// do nothing
@@ -70,7 +74,7 @@ function handleUserChoice(event) {
 			nextRoundButton.style.opacity = '1';
 			clearData();
 		}
-	}else{
+	} else {
 		rightChoice = false;
 	}
 }
@@ -167,7 +171,7 @@ function glowAndSound(event) {
 function nextRound(event) {
 	clearData();
 	event.target.style.opacity = '0';
-	startButton.innerText = 'start'
+	startButton.innerText = 'start';
 	startButton.style.opacity = '1';
 	roundCount++;
 	roundLabel.innerText = `Round ${roundCount}`;
@@ -184,13 +188,14 @@ function clearData() {
 
 function playerTurnMessage(time) {
 	if (gameSequence.length === roundCount) {
-		setTimeout(()=>{message.innerHTML = 'Your Turn!'}, time - 500);
+		setTimeout(() => {
+			message.innerHTML = 'Your Turn!';
+		}, time - 500);
 	}
 }
 
-
 /** STORE THE SCORE, ROUND, AND DATA */
-function storeDataOnReload(){
+function storeDataOnReload() {
 	if (typeof Storage !== 'undefined') {
 		// Store the data
 		localStorage.storedRound = roundCount;
