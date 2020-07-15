@@ -38,7 +38,7 @@ function handleStartButton(event) {
 let rightChoice = false;
 function handleUserChoice(event) {
 	//the message should say your turn
-fixUnpromptedClicks();
+
 	console.log('handle user choice');
 	glowAndSound(event);
 	userSequence.push(`${event.target.dataset.color}`);
@@ -77,6 +77,8 @@ fixUnpromptedClicks();
 	} else {
 		rightChoice = false;
 	}
+
+	fixUnpromptedClicks();
 }
 
 function gameChoice() {
