@@ -26,6 +26,8 @@ let userSequence = [];
 let gameSequence = [];
 
 function handleStartButton(event) {
+	//  
+	fixUnpromptedClicks();
 	rightChoice = false;
 	checkAndRemoveColors();
 	message.style.opacity = '1';
@@ -234,4 +236,4 @@ function fixUnpromptedClicks(){
 	if(gameSequence.length !== roundCount){
 		userSequence = [];
 	}
-}ß
+}
