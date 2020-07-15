@@ -40,7 +40,7 @@ function handleUserChoice(event) {
 	//the message should say your turn
 
 	console.log('handle user choice');
-	glowAndDim(event);
+	glowAndSound(event);
 	userSequence.push(`${event.target.dataset.color}`);
 	console.log(event.target);
 	
@@ -83,6 +83,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				blueButton.classList.add('onBlue');
+				blueSound.play();
 				playerTurnMessage(timeout);
 			}, timeout);
 			// checkAndRemoveColors();
@@ -93,6 +94,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				redButton.classList.add('onRed');
+				redSound.play();
 				playerTurnMessage(timeout);
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
@@ -102,6 +104,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				yellowButton.classList.add('onYellow');
+				yellowSound.play();
 				playerTurnMessage(timeout);
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
@@ -111,6 +114,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				greenButton.classList.add('onGreen');
+				greenSound.play();
 				playerTurnMessage(timeout);
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
@@ -138,19 +142,24 @@ function checkAndRemoveColors() {
 	}
 }
 
-function glowAndDim(event) {
+//handles the glow and sound of the button when clicked
+function glowAndSound(event) {
 	let color = event.target.dataset.color;
 	if (color === 'blue') {
 		blueButton.classList.add('onBlue');
+		blueSound.play();
 		setTimeout(checkAndRemoveColors, 200);
 	} else if (color === 'red') {
 		redButton.classList.add('onRed');
+		redSound.play();
 		setTimeout(checkAndRemoveColors, 200);
 	} else if (color === 'yellow') {
 		yellowButton.classList.add('onYellow');
+		yellowSound.play();
 		setTimeout(checkAndRemoveColors, 200);
 	} else if (color === 'green') {
 		greenButton.classList.add('onGreen');
+		greenSound.play();
 		setTimeout(checkAndRemoveColors, 200);
 	}
 }
@@ -201,3 +210,15 @@ function storeDataOnReload(){
 }
 
 storeDataOnReload();
+
+/** the sounds */
+
+//creating a sound object
+let blueSound = new Audio();
+blueSound.src = 'blueSound.wav';
+let redSound = new Audio();
+redSound.src = 'redSound.wav';
+let yellowSound = new Audio();
+yellowSound.src = 'yellowSound.wav';
+let greenSound = new Audio();
+greenSound.src = 'greenSound.wav';
