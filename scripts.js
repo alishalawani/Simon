@@ -7,7 +7,7 @@ const greenButton = document.querySelector('.green');
 let message = document.querySelector('#message');
 let score = document.querySelector('.score-js');
 let scoreCount = 0;
-score.innerText = `Score: ${scoreCount}`;
+score.innerHTML = `Score: ${scoreCount}`;
 let nextRoundButton = document.querySelector('.next-round');
 nextRoundButton.addEventListener('click', nextRound);
 
@@ -26,6 +26,8 @@ let userSequence = [];
 let gameSequence = [];
 
 function handleStartButton(event) {
+	rightChoice = false;
+	checkAndRemoveColors()
 	message.style.opacity = '1';
 	message.innerText = 'WATCH!';
 
@@ -33,7 +35,7 @@ function handleStartButton(event) {
 
 	gameChoice();
 }
-
+let rightChoice = false;
 function handleUserChoice(event) {
 	//the message should say your turn
 
@@ -41,31 +43,35 @@ function handleUserChoice(event) {
 	glowAndDim(event);
 	userSequence.push(`${event.target.dataset.color}`);
 	console.log(event.target);
-	let rightChoice = false;
-	if (gameSequence.length == userSequence.length) {
+	
+	if ((gameSequence.length == userSequence.length) && (gameSequence !== 0) && (userSequence !== 0) ) {
 		for (let i = 0; i < gameSequence.length; i++) {
-			if (gameSequence[i] == userSequence[i]) {
-				rightChoice = true;
+			if (gameSequence[i] !== userSequence[i]) {
+				// do nothing
 			} else {
-				rightChoice = false;
+				rightChoice = true;
 				// delete this later
 				console.log(rightChoice);
 			}
 		}
-		if (rightChoice == false) {
+		if (rightChoice === false) {
 			// player loses so a losing message pops up
 			message.innerHTML = 'YOU LOSE';
 			clearData();
-		} else if (rightChoice == true) {
+			startButton.innerText = 'replay';
+		} else if (rightChoice === true) {
+			startButton.style.opacity = '0';
 			// player wins so a winning message pops up
 			scoreCount += 2;
-			score.innerText = `Score: ${scoreCount}`;
+			score.innerHTML = `Score: ${scoreCount}`;
 			message.innerHTML = 'YOU WIN!!!';
 
 			//make the next round button visible
 			nextRoundButton.style.opacity = '1';
 			clearData();
 		}
+	}else{
+		rightChoice = false;
 	}
 }
 
@@ -73,30 +79,30 @@ function gameChoice() {
 	for (let i = 0; i < roundCount; i++) {
 		rando = Math.floor(Math.random() * 4) + 1;
 
-		if (rando == 1) {
+		if (rando === 1) {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				blueButton.classList.add('onBlue');
-				playerTurnMessage();
+				playerTurnMessage(timeout);
 			}, timeout);
 			// checkAndRemoveColors();
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${blueButton.dataset.color}`);
 			console.log('blue');
-		} else if (rando == 2) {
+		} else if (rando === 2) {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				redButton.classList.add('onRed');
-				playerTurnMessage();
+				playerTurnMessage(timeout);
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${redButton.dataset.color}`);
 			console.log('red');
-		} else if (rando == 3) {
+		} else if (rando === 3) {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				yellowButton.classList.add('onYellow');
-				playerTurnMessage();
+				playerTurnMessage(timeout);
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${yellowButton.dataset.color}`);
@@ -105,7 +111,7 @@ function gameChoice() {
 			setTimeout(() => {
 				checkAndRemoveColors();
 				greenButton.classList.add('onGreen');
-				playerTurnMessage();
+				playerTurnMessage(timeout);
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${greenButton.dataset.color}`);
@@ -134,23 +140,26 @@ function checkAndRemoveColors() {
 
 function glowAndDim(event) {
 	let color = event.target.dataset.color;
-	if (color == 'blue') {
+	if (color === 'blue') {
 		blueButton.classList.add('onBlue');
 		setTimeout(checkAndRemoveColors, 200);
-	} else if (color == 'red') {
+	} else if (color === 'red') {
 		redButton.classList.add('onRed');
 		setTimeout(checkAndRemoveColors, 200);
-	} else if (color == 'yellow') {
+	} else if (color === 'yellow') {
 		yellowButton.classList.add('onYellow');
 		setTimeout(checkAndRemoveColors, 200);
-	} else if (color == 'green') {
+	} else if (color === 'green') {
 		greenButton.classList.add('onGreen');
 		setTimeout(checkAndRemoveColors, 200);
 	}
 }
 
 function nextRound(event) {
+	clearData();
 	event.target.style.opacity = '0';
+	startButton.innerText = 'start'
+	startButton.style.opacity = '1';
 	roundCount++;
 	roundLabel.innerText = `Round ${roundCount}`;
 	message.style.opacity = '0';
@@ -158,18 +167,37 @@ function nextRound(event) {
 
 function clearData() {
 	//empties the arrays for the user and game sequence
-	gameSequence.forEach(() => {
-		gameSequence.pop();
-	});
-	userSequence.forEach((choice) => {
-		userSequence.pop();
-	});
+	gameSequence = [];
+	userSequence = [];
 	timeout = 2000;
 	timeoutTracker = timeout;
 }
 
-function playerTurnMessage() {
-	if (gameSequence.length == roundCount) {
-		message.innerHTML = 'Your Turn!';
+function playerTurnMessage(time) {
+	if (gameSequence.length === roundCount) {
+		setTimeout(()=>{message.innerHTML = 'Your Turn!'}, time - 500);
 	}
 }
+
+
+/** STORE THE SCORE, ROUND, AND DATA */
+function storeDataOnReload(){
+	if (typeof Storage !== 'undefined') {
+		// Store the data
+		localStorage.storedRound = roundCount;
+		localStorage.storedScore = scoreCount;
+		localStorage.storedUserSequence = userSequence;
+		localStorage.storedGameSequence = gameSequence;
+		localStorage.storedStartOrReplay = startButton.innerText;
+		// Retrieve the data
+		roundCount = Number(localStorage.storedRound);
+		scoreCount = Number(localStorage.storedScore);
+		userSequence = Array(localStorage.userSequence);
+		gameSequence = Array(localStorage.gameSequence);
+		storedStartOrReplay = localStorage.storedStartOrReplay;
+	} else {
+		alert('Sorry, Your game will have to reset...');
+	}
+}
+
+storeDataOnReload();

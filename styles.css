@@ -39,6 +39,7 @@ body {
 	margin: -5px 0 0 70%;
 	border: none;
 	z-index: 999;
+	font-weight: bold;
 }
 
 .foot {
