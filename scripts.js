@@ -38,7 +38,7 @@ function handleStartButton(event) {
 let rightChoice = false;
 function handleUserChoice(event) {
 	//the message should say your turn
-
+fixUnpromptedClicks();
 	console.log('handle user choice');
 	glowAndSound(event);
 	userSequence.push(`${event.target.dataset.color}`);
@@ -227,3 +227,9 @@ let yellowSound = new Audio();
 yellowSound.src = 'yellowSound.wav';
 let greenSound = new Audio();
 greenSound.src = 'greenSound.wav';
+
+function fixUnpromptedClicks(){
+	if(gameSequence.length !== roundCount){
+		userSequence = [];
+	}
+}ß
