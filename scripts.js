@@ -199,7 +199,7 @@ function playerTurnMessage(time) {
 	if (gameSequence.length === roundCount) {
 		setTimeout(() => {
 			message.innerHTML = 'Your Turn!';
-		}, time);
+		}, time - 500);
 	}
 }
 
@@ -207,7 +207,6 @@ let reset = document.querySelector('.reset');
 
 reset.addEventListener('click', handleReset);
 function handleReset(event) {
-	// event.preventDefault();
 	roundCount = 1;
 	roundLabel.innerText = `Round ${roundCount}`;
 	timeout = 2000;
@@ -222,17 +221,7 @@ function handleReset(event) {
 	startButton.innerText = 'start';
 }
 
-/** STORE THE SCORE, ROUND, AND DATA */
-// window.onload = function (){
-// 	let stored = sessionStorage.getItem('storedScore');
-// 	scoreCount = Number(stored);
-// }
 
-// window.onbeforeunload =  function(){
-// 	sessionStorage.setItem('storedScore', scoreCount);
-// }
-
-/** the sounds */
 
 // ******* creating sound objects **********
 let blueSound = new Audio();
