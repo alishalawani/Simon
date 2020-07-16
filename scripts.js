@@ -11,7 +11,6 @@ score.innerHTML = `Score: ${scoreCount}`;
 let nextRoundButton = document.querySelector('.next-round');
 nextRoundButton.addEventListener('click', nextRound);
 
-
 let roundCount = 1;
 let roundLabel = document.querySelector('.round-js');
 roundLabel.innerText = `Round ${roundCount}`;
@@ -64,7 +63,9 @@ function handleUserChoice(event) {
 		}
 		if (rightChoice === false) {
 			// player loses so a losing message pops up
-			message.innerHTML = 'YOU LOSE';
+			message.innerHTML = 'YOU LOSE -1pt';
+			scoreCount -= 1;
+			score.innerHTML = `Score: ${scoreCount}`;
 			// clearData();
 			loseSound.play();
 			startButton.innerText = 'replay';
@@ -202,13 +203,10 @@ function playerTurnMessage(time) {
 	}
 }
 
-
 let reset = document.querySelector('.reset');
 
-
-
 reset.addEventListener('click', handleReset);
-function handleReset(event){
+function handleReset(event) {
 	// event.preventDefault();
 	roundCount = 1;
 	roundLabel.innerText = `Round ${roundCount}`;
@@ -221,8 +219,7 @@ function handleReset(event){
 	message.innerHTML = '';
 	nextRoundButton.style.opacity = '0';
 	startButton.style.opacity = '1';
-	startButton.innerText = 'start'
-
+	startButton.innerText = 'start';
 }
 
 /** STORE THE SCORE, ROUND, AND DATA */
