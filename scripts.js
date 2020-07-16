@@ -207,6 +207,7 @@ let reset = document.querySelector('.reset');
 
 reset.addEventListener('click', handleReset);
 function handleReset(event) {
+	//puts everything back to default
 	roundCount = 1;
 	roundLabel.innerText = `Round ${roundCount}`;
 	timeout = 2000;
@@ -237,8 +238,8 @@ winSound.src = 'sounds/winSound.wav';
 let loseSound = new Audio();
 loseSound.src = 'sounds/loseSound.wav';
 
-function fixUnpromptedClicks() {
-	if (gameSequence.length !== roundCount) {
-		userSequence = [];
-	}
-}
+// function fixUnpromptedClicks() {
+// 	if (gameSequence.length !== roundCount) {
+// 		userSequence = [];
+// 	}
+// }
