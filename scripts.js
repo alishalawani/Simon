@@ -4,10 +4,15 @@ const blueButton = document.querySelector('.blue');
 const redButton = document.querySelector('.red');
 const yellowButton = document.querySelector('.yellow');
 const greenButton = document.querySelector('.green');
+//grabbing the message 
 let message = document.querySelector('#message');
+
+//grabbing the score
 let score = document.querySelector('.score-js');
 let scoreCount = 0;
 score.innerHTML = `Score: ${scoreCount}`;
+
+//next round
 let nextRoundButton = document.querySelector('.next-round');
 nextRoundButton.addEventListener('click', nextRound);
 
@@ -19,6 +24,8 @@ let startButton = document.querySelector('.start-button');
 
 startButton.addEventListener('click', handleStartButton);
 circle.addEventListener('click', handleUserChoice);
+
+//declaring the random number variable
 var rando;
 let timeout = 2000;
 let timeoutTracker = timeout;
@@ -26,25 +33,23 @@ let userSequence = [];
 let gameSequence = [];
 
 function handleStartButton(event) {
-	//
-	// fixUnpromptedClicks();
-	// rightChoice = false;
 	checkAndRemoveColors();
 	message.style.opacity = '1';
 	message.innerText = 'WATCH!';
 
-	console.log('handleStartButton');
 
 	gameChoice();
 }
+
+//initializing a variable that will determine if the user loses or wins
 let rightChoice = false;
+
+//handle user click event
 function handleUserChoice(event) {
 	//the message should say your turn
 
-	console.log('handle user choice');
 	glowAndSound(event);
 	userSequence.push(`${event.target.dataset.color}`);
-	console.log(event.target);
 
 	if (
 		gameSequence.length === userSequence.length &&
@@ -53,12 +58,9 @@ function handleUserChoice(event) {
 	) {
 		for (let i = 0; i < gameSequence.length; i++) {
 			if (gameSequence[i] !== userSequence[i]) {
-				// do nothing
 				rightChoice = false;
 			} else if (gameSequence[i] === userSequence[i]) {
 				rightChoice = true;
-				// delete this later
-				// console.log(rightChoice);
 			}
 		}
 		if (rightChoice === false) {
@@ -66,7 +68,6 @@ function handleUserChoice(event) {
 			message.innerHTML = 'YOU LOSE -1pt';
 			scoreCount -= 1;
 			score.innerHTML = `Score: ${scoreCount}`;
-			// clearData();
 			loseSound.play();
 			startButton.innerText = 'replay';
 		} else if (rightChoice === true) {
@@ -79,15 +80,14 @@ function handleUserChoice(event) {
 
 			//make the next round button visible
 			nextRoundButton.style.opacity = '1';
-			// clearData();
 		}
 	} else {
 		rightChoice = false;
 	}
-
-	// fixUnpromptedClicks();
 }
 
+//it is called in the start click event handler
+//this function is responsible for generating the game sequence
 function gameChoice() {
 	for (let i = 0; i < roundCount; i++) {
 		rando = Math.floor(Math.random() * 4) + 1;
@@ -102,7 +102,6 @@ function gameChoice() {
 			// checkAndRemoveColors();
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${blueButton.dataset.color}`);
-			console.log('blue');
 		} else if (rando === 2) {
 			setTimeout(() => {
 				checkAndRemoveColors();
@@ -112,7 +111,6 @@ function gameChoice() {
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${redButton.dataset.color}`);
-			console.log('red');
 		} else if (rando === 3) {
 			setTimeout(() => {
 				checkAndRemoveColors();
@@ -122,7 +120,6 @@ function gameChoice() {
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${yellowButton.dataset.color}`);
-			console.log('yellow');
 		} else {
 			setTimeout(() => {
 				checkAndRemoveColors();
@@ -132,12 +129,12 @@ function gameChoice() {
 			}, timeout);
 			//ADD THE CHOICE TO THE SEQUENCE
 			gameSequence.push(`${greenButton.dataset.color}`);
-			console.log('green');
 		}
+
+		//extra measure to make sure colors don't glow at the same time
 		let clearTime = 200 + timeout;
 		setTimeout(checkAndRemoveColors, clearTime);
 		timeout += 1000;
-		// setTimeout(checkAndRemoveColors, timeout);
 	}
 	timeout = timeoutTracker;
 }
@@ -177,6 +174,7 @@ function glowAndSound(event) {
 	}
 }
 
+//handles the next round click event
 function nextRound(event) {
 	clearData();
 	event.target.style.opacity = '0';
@@ -195,6 +193,7 @@ function clearData() {
 	timeoutTracker = timeout;
 }
 
+//displays the player Turn message when the game finishes it's sequence for each round
 function playerTurnMessage(time) {
 	if (gameSequence.length === roundCount) {
 		setTimeout(() => {
@@ -203,6 +202,8 @@ function playerTurnMessage(time) {
 	}
 }
 
+
+// ********** THE RESET BUTTON IS CREATED AND HANDLED HERE ******
 let reset = document.querySelector('.reset');
 
 reset.addEventListener('click', handleReset);
@@ -237,9 +238,3 @@ let winSound = new Audio();
 winSound.src = 'sounds/winSound.wav';
 let loseSound = new Audio();
 loseSound.src = 'sounds/loseSound.wav';
-
-// function fixUnpromptedClicks() {
-// 	if (gameSequence.length !== roundCount) {
-// 		userSequence = [];
-// 	}
-// }
