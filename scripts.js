@@ -11,6 +11,7 @@ score.innerHTML = `Score: ${scoreCount}`;
 let nextRoundButton = document.querySelector('.next-round');
 nextRoundButton.addEventListener('click', nextRound);
 
+
 let roundCount = 1;
 let roundLabel = document.querySelector('.round-js');
 roundLabel.innerText = `Round ${roundCount}`;
@@ -65,12 +66,14 @@ function handleUserChoice(event) {
 			// player loses so a losing message pops up
 			message.innerHTML = 'YOU LOSE';
 			// clearData();
+			loseSound.play();
 			startButton.innerText = 'replay';
 		} else if (rightChoice === true) {
 			startButton.style.opacity = '0';
 			// player wins so a winning message pops up
 			scoreCount += 2;
 			score.innerHTML = `Score: ${scoreCount}`;
+			winSound.play();
 			message.innerHTML = 'YOU WIN!!!';
 
 			//make the next round button visible
@@ -195,8 +198,31 @@ function playerTurnMessage(time) {
 	if (gameSequence.length === roundCount) {
 		setTimeout(() => {
 			message.innerHTML = 'Your Turn!';
-		}, time - 100);
+		}, time);
 	}
+}
+
+
+let reset = document.querySelector('.reset');
+
+
+
+reset.addEventListener('click', handleReset);
+function handleReset(event){
+	// event.preventDefault();
+	roundCount = 1;
+	roundLabel.innerText = `Round ${roundCount}`;
+	timeout = 2000;
+	timeoutTracker = timeout;
+	scoreCount = 0;
+	score.innerHTML = `Score: ${scoreCount}`;
+	clearData();
+	rightChoice = false;
+	message.innerHTML = '';
+	nextRoundButton.style.opacity = '0';
+	startButton.style.opacity = '1';
+	startButton.innerText = 'start'
+
 }
 
 /** STORE THE SCORE, ROUND, AND DATA */
@@ -223,15 +249,19 @@ function playerTurnMessage(time) {
 
 /** the sounds */
 
-//creating a sound object
+// ******* creating sound objects **********
 let blueSound = new Audio();
-blueSound.src = 'blueSound.wav';
+blueSound.src = 'sounds/blueSound.mp3';
 let redSound = new Audio();
-redSound.src = 'redSound.wav';
+redSound.src = 'sounds/redSound.wav';
 let yellowSound = new Audio();
-yellowSound.src = 'yellowSound.wav';
+yellowSound.src = 'sounds/yellowSound.wav';
 let greenSound = new Audio();
-greenSound.src = 'greenSound.wav';
+greenSound.src = 'sounds/greenSound.wav';
+let winSound = new Audio();
+winSound.src = 'sounds/winSound.wav';
+let loseSound = new Audio();
+loseSound.src = 'sounds/loseSound.wav';
 
 function fixUnpromptedClicks() {
 	if (gameSequence.length !== roundCount) {
