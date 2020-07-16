@@ -226,26 +226,14 @@ function handleReset(event){
 }
 
 /** STORE THE SCORE, ROUND, AND DATA */
-// function storeDataOnReload() {
-// 	if (typeof Storage !== 'undefined') {
-// 		// Store the data
-// 		localStorage.storedRound = roundCount;
-// 		localStorage.storedScore = scoreCount;
-// 		localStorage.storedUserSequence = userSequence;
-// 		localStorage.storedGameSequence = gameSequence;
-// 		localStorage.storedStartOrReplay = startButton.innerText;
-// 		// Retrieve the data
-// 		roundCount = Number(localStorage.storedRound);
-// 		scoreCount = Number(localStorage.storedScore);
-// 		userSequence = Array(localStorage.userSequence);
-// 		gameSequence = Array(localStorage.gameSequence);
-// 		storedStartOrReplay = localStorage.storedStartOrReplay;
-// 	} else {
-// 		alert('Sorry, Your game will have to reset...');
-// 	}
+// window.onload = function (){
+// 	let stored = sessionStorage.getItem('storedScore');
+// 	scoreCount = Number(stored);
 // }
 
-// storeDataOnReload();
+// window.onbeforeunload =  function(){
+// 	sessionStorage.setItem('storedScore', scoreCount);
+// }
 
 /** the sounds */
 
